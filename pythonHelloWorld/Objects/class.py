@@ -12,7 +12,7 @@ class Employee(User):
     def seeSalary(self):
         print(self.salary)
     def greet(self):
-        print("Mi nombre es: "+self.nombre+"y ganó: "+str(self.salary))
+        print("Mi nombre es: "+self.nombre+" y ganó: "+str(self.salary))
 employee = Employee("Nicolas")
 employee.modifySaliry(1000)
 employee.seeSalary()
