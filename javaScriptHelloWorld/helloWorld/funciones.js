@@ -89,11 +89,43 @@ function hola (apellido, nombre=""){}/// el orden es, que los parametro sin valo
 ///funcions con mas de un valor
 //puedo enviar cuantos argumentos quieras en una funcion sin importar cuantos paramentos de hallan creado
 function sumaTodos(){
-    console.log(arguments[6]);
-    return arguments[0]+arguments[1];
-  }
-  console.log(sumaTodos(1,2,3,4,5,6,7));
+   console.log(arguments[6]);
+   return arguments[0]+arguments[1];
+}
+console.log(sumaTodos(1,2,3,4,5,6,7));
 
 
-  ////////funciones anonimas////////////
+////////funciones anonimas////////////
+function executor (funcion){
+    funcion();
+}
+function decirHola(){
+    console.log("Hola");
+   }
+executor(decirHola);
+
+//1.-
   
+function executor (funcion){
+    funcion();
+}
+function decirHola(){
+    console.log("Hola");
+}
+executor(function(){
+    console.log("Hola");
+});
+
+/// Arrow - function
+
+let demo = ()=>{
+    console.log("Hola mundo!");
+}
+
+function suma(a,b){
+    return a+b;
+}
+//las dos funciones hacen lo mismo
+suma = (a,b) => a+b
+
+console.log(suma(2,3));
