@@ -25,21 +25,27 @@ yellow = (255,212,0)
 green=(0,255,0)
 green2=(106,218,126)
 blue=(0,0,255)
-
+message = "Preciona una tecla"
 #Obteber una fuente
-font = pygame.font.Font(os.path.join(font,"Roboto-Thin.ttf"), 50)
-#Sounds
-pygame.mixer.music.load(os.path.join(sounds,"second.mp3"))
-pygame.mixer.music.play(-1,0.0)
-##pygame.mixer.music.rewind(1000)
+font = pygame.font.Font(os.path.join(font,"Roboto-Thin.ttf"), 30)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
-    time = pygame.time.get_ticks()//1000#Milisegundos
-    text = font.render(str(time),True,red) #->surface
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                message = "LEFT"
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                message = "RIGHT"
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                message = "DOWN"
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
+                message = "UP"
+        if event.type == pygame.KEYUP:
+            message = "Tecla liberada!!"
+    ##time = pygame.time.get_ticks()//1000#Milisegundos
+    text = font.render(message,True,red) #->surface
     rect = text.get_rect()
     rect.center = (width//2, height//2)
     Surface.fill(white)
