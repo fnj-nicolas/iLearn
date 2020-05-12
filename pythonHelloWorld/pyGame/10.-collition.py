@@ -28,16 +28,28 @@ blue=(0,0,255)
 
 ##Character img
 character = pygame.image.load(os.path.join(img, 'character.png')) #my player
-rect = character.get_rect()
-rect.center = (width//2,height //2)
+characterRect = character.get_rect()
+characterRect.center = (width//2,height //2)
+characterMask = pygame.mask.from_surface(character)
+
+##Enemy img
+enemy = pygame.image.load(os.path.join(img, 'enemy.png')) #my player
+enemyRect = enemy.get_rect()
+enemyRect.center = (width//2,height //2)
+enemyMask = pygame.mask.from_surface(enemy)
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    rect.center = pygame.mouse.get_pos()
-
+    characterRect.center = pygame.mouse.get_pos()
     Surface.fill(white)
-    Surface.blit(character, rect)
+    Surface.blit(enemy, enemyRect)
+    Surface.blit(character, characterRect)
+
+    
+    offset = (characterRect.x - enemyRect.x, characterRect.y - enemyRect.y )
+    if enemyMask.overlap(characterMask,offset):
+        print("vamo bokita")
     pygame.display.update()
